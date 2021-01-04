@@ -1,18 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
+import * as yup from 'yup';
+import loginSchema from '../validation/LoginFormSchema';
+
+// Login Form Initial Objects
+const blankLoginForm = {
+    username: '',
+    password: '',
+}
+
+const initialLoginErrors = {
+    name: '',
+    password: '',
+}
 
 function LoginForm(props) {
 
-    const {loginValues, updateLogin, submitLogin, loginErrors} = props;
+  // Login Form Use States and event handlers
+  const [loginFormValues, setLoginFormValues] = useState(blankLoginForm);
+  const [user, setUser] = useState([]);
+  const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
 
+
+    
     const changeLoginValues = (event) => {
         const {name, value} = event.target;
-        updateLogin(name, value);
+        updateLoginForm(name, value);
     };
 
     const uponSubmitLogin = (event) => {
         event.preventDefault();
-        submitLogin();
+        submitLoginForm();
     };
+
+    const updateLoginForm = (name, value) => {
+
+        yup.reach(loginSchema, name)
+         .validate(value)
+         .then(() => {
+           setLoginErrors({...loginErrors, [name]: '',})
+           setLoginFormValues({...loginFormValues, [name]: value});
+         })
+         .catch((error) => {
+           setLoginErrors({...loginErrors, [name]: error.errors[0],})
+         })
+    }
+    
+    const submitLoginForm = () => {
+        const userLoginInfo = {
+          username: loginFormValues.username,
+          password: loginFormValues.password,
+        }
+    
+        setUser(userLoginInfo);
+        setLoginFormValues(blankLoginForm);
+    }
+
 
     return (
         <div>
@@ -20,14 +62,14 @@ function LoginForm(props) {
                 <label> Username
                     <input name = 'username'
                      type = 'text' 
-                     value = {loginValues.username}
+                     value = {loginFormValues.username}
                      onChange = {changeLoginValues} />
                 </label>
 
                 <label> Password
                     <input name = 'password'
                      type = 'password' 
-                     value = {loginValues.password} 
+                     value = {loginFormValues.password} 
                      onChange = {changeLoginValues} />
                 </label>
                 <button>Submit</button>
