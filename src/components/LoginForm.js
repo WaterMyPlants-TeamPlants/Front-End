@@ -1,27 +1,42 @@
-export default LoginForm;
-
 import React from 'react';
 
 function LoginForm(props) {
 
-    const {loginValues} = props;
+    const {loginValues, updateLogin, submitLogin, loginErrors} = props;
+
+    const changeLoginValues = (event) => {
+        const {name, value} = event.target;
+        updateLogin(name, value);
+    };
+
+    const uponSubmitLogin = (event) => {
+        event.preventDefault();
+        submitLogin();
+    };
 
     return (
         <div>
-            <form>
+            <form onSubmit = {uponSubmitLogin}>
                 <label> Username
                     <input name = 'username'
                      type = 'text' 
-                     value = {loginValues.username} />
+                     value = {loginValues.username}
+                     onChange = {changeLoginValues} />
                 </label>
 
                 <label> Password
                     <input name = 'password'
                      type = 'password' 
-                     value = {loginValues.password} />
+                     value = {loginValues.password} 
+                     onChange = {changeLoginValues} />
                 </label>
                 <button>Submit</button>
             </form>
+            
+            <div className = 'errors-container'>
+                <p>{loginErrors.username}</p>
+                <p>{loginErrors.password}</p>
+            </div>
         </div>
     )
 };
