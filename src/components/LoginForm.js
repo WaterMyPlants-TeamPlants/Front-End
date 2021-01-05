@@ -77,10 +77,10 @@ function LoginForm(props) {
                 <button>Sign In</button>
             </StyledForm>
             
-            <div className = 'errors-container'>
+            <LoginErrorsDiv className = 'errors-container'>
                 <p>{loginErrors.username}</p>
                 <p>{loginErrors.password}</p>
-            </div>
+            </LoginErrorsDiv>
         </div>
     )
 };
@@ -109,8 +109,18 @@ const StyledForm = styled.form`
         background-color: #90a1d5;
         border-radius: 5px;
         margin: 5% 45% 3% 2%;
+        color: #ffffff;
     }
 
 `
+const LoginErrorsDiv = styled.div`
+    margin: 0 20% 5% 20%;
+
+    p{
+        color: red;
+        font-weight: bolder;
+    }
+`
+
 
 export default LoginForm;
