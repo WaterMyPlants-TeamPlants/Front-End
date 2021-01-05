@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import createPlantSchema from '../validation/CreatePlantFormSchema';
+import styled from 'styled-components';
 
 // Create Plant Form Empty Objects
 const blankCreatePlantForm = {
@@ -60,7 +61,7 @@ function CreatePlantForm(props) {
 
     return (
         <div>
-            <form onSubmit = {uponSubmitCreatePlant} >
+            <StyledPlantForm onSubmit = {uponSubmitCreatePlant} >
                 <label> Nickname
                     <input name = 'nickname' 
                      type = 'text' 
@@ -81,16 +82,48 @@ function CreatePlantForm(props) {
                      value = {createPlantFormValues.waterfrequency} 
                      onChange = {changeCreatePlantValues} />
                 </label>
-                <button>Submit</button>
-            </form>
+                <button>Save</button>
+            </StyledPlantForm>
 
-            <div>
+            <ErrorsDiv>
                 <p>{createPlantErrors.nickname}</p>
                 <p>{createPlantErrors.species}</p>
                 <p>{createPlantErrors.waterfrequency}</p>
-            </div>
+            </ErrorsDiv>
         </div>
     )
 };
+
+// CSS Styles
+
+const StyledPlantForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 2% 25% 2% 25%;
+    padding: 3% 10% 5% 10%;
+
+    label{
+        margin: 2%;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        color: #578a42;
+    }
+
+    button{
+        background-color: #4b67bb;
+        border-radius: 5px;
+        margin: 5% 20% 3% 20%;
+        color: #ffffff;
+    }
+`
+const ErrorsDiv = styled.div`
+    margin: 0 20% 5% 20%;
+
+    p{
+        color: red;
+        font-weight: bolder;
+    }
+`
 
 export default CreatePlantForm;
