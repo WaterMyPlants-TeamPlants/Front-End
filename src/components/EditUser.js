@@ -3,8 +3,8 @@ import Styled from "styled-components";
 import axios from "axios";
 
 //imported images
-import pencil from "../logos/pencil.png";
-import user from "../logos/User.png";
+import pencil from "./images/pencil.png";
+import user from "./images/User.png";
 
 
 const UserInfo = {
@@ -67,7 +67,7 @@ const EditUser = () => {
                 /><img id="pencil" src= {pencil} alt="edit pencil"/>
             </label>
             <br/>
-            <label className="notifications"><h2>Turn notifications on or off:</h2><br/>
+            <label className="notifications"><h2>Turn notifications on:</h2><br/>
                 <input
                 id="checkbox"
                 type="checkbox"
@@ -134,6 +134,22 @@ input {
 
 button {
     margin-top: 20%;
+    padding: 1.5%;
+    width: 20%;
+    border-radius: 0.5rem;
+    font-size: 110%;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #8ca9fc;
+    color: #e5ffe5;
+    transition: 0.5s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #e5ffe5;
+    color: #8ca9fc;
 }
 
 `
