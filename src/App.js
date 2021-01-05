@@ -10,6 +10,8 @@ import EditPlant from './components/EditPlant.js'; // Mona //
 import {createStore} from 'redux';
 import Dashboard from './components/dashboard';
 import Registered from './components/Registered';
+import EditUser from "./components/EditUser"
+
 const Content = styled.div`
   margin-top: 150px;
   @media (min-width: 700px) {
