@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import loginSchema from '../validation/LoginFormSchema';
 import styled from 'styled-components';
+import Axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {saveUser} from '../actions'
+
 
 // Login Form Initial Objects
 const blankLoginForm = {
@@ -15,7 +20,8 @@ const initialLoginErrors = {
 }
 
 function LoginForm(props) {
-
+  const dispatch = useDispatch();
+  const {push} = useHistory();
   // Login Form Use States and event handlers
   const [loginFormValues, setLoginFormValues] = useState(blankLoginForm);
   const [user, setUser] = useState([]);
@@ -39,11 +45,12 @@ function LoginForm(props) {
          .validate(value)
          .then(() => {
            setLoginErrors({...loginErrors, [name]: '',})
-           setLoginFormValues({...loginFormValues, [name]: value});
+           
          })
          .catch((error) => {
            setLoginErrors({...loginErrors, [name]: error.errors[0],})
          })
+         setLoginFormValues({...loginFormValues, [name]: value});
     }
     
     const submitLoginForm = () => {
@@ -51,8 +58,16 @@ function LoginForm(props) {
           username: loginFormValues.username,
           password: loginFormValues.password,
         }
-    
-        setUser(userLoginInfo);
+        Axios.post('https://plantswater.herokuapp.com/api/login', userLoginInfo)
+        .then((res) =>{
+            localStorage.setItem("token", res.data.token);
+            console.log(res);
+            dispatch(saveUser(res.data.user))
+            push('/dashboard');
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
         setLoginFormValues(blankLoginForm);
     }
 
@@ -121,6 +136,5 @@ const LoginErrorsDiv = styled.div`
         font-weight: bolder;
     }
 `
-
 
 export default LoginForm;
