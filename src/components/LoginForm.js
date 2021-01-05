@@ -90,6 +90,7 @@ function LoginForm(props) {
                      onChange = {changeLoginValues} />
                 </label>
                 <button>Sign In</button>
+                <button>Register</button>
             </StyledForm>
             
             <LoginErrorsDiv className = 'errors-container'>
