@@ -68,11 +68,11 @@ export default withFormik({
     password2: yup
       .string()
       .oneOf([yup.ref("password"), null, "passwords must match"])
-      .required(),
+      .required("passwords must match"),
     phonenumber: yup
       .number()
       .positive()
-      .required(),
+      .required("phone number required"),
   }),
   validateOnChange: false,
   validateOnBlur: false,
