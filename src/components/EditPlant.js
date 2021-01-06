@@ -1,78 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
-
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
+import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../AxiosWithAuth";
+import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom"
 //Styles Import//
-import { 
-    Body,
-    PlantForm,
-    FieldInput,
-    Button,
-  } from './StyledComponents'
+import { Body, PlantForm, FieldInput, Button } from "./StyledComponents";
 
 const EditPlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
-
-  useEffect(() => {
-    if (status) {
-      addNewPlant([...newPlant, status]);
-    }
-  }, [newPlant, status]);
-
+  const { push } = useHistory();
+  const pushToDash = () => {
+    push("/dashboard");
+  };
   return (
     <Body>
       <PlantForm>
         <h1>Edit Plant</h1>
-        {touched.number && errors.number && (
-            <p className="error">{errors.number}</p>
+
+        {touched.nickname && errors.nickname && (
+          <p className="error">{errors.nickname}</p>
         )}
-        <FieldInput type="number" name="number" placeholder="Amount" />
-        {touched.plant && errors.plant && (
-          <p className="error">{errors.plant}</p>
-        )}
-        <FieldInput type="text" name="plant" placeholder="Nick Name" />
+        <FieldInput type="text" name="nickname" placeholder="Nick Name" />
 
         {touched.species && errors.species && (
           <p className="error">{errors.species}</p>
         )}
         <FieldInput type="text" name="species" placeholder="Species" />
 
-        {touched.water && errors.water && (
-          <p className="error">{errors.water}</p>
+        {touched.frequency && errors.frequency && (
+          <p className="error">{errors.frequency}</p>
         )}
-        <FieldInput type="text" name="water" placeholder="Water Intake" />
+        <FieldInput type="text" name="frequency" placeholder="Water Intake" />
 
         <Button type="submit">Submit!</Button>
+        <Button onClick={pushToDash}>Back to Dash</Button>
       </PlantForm>
     </Body>
   );
 };
 
 export default withFormik({
-  mapPropsToValues: values => {
+  mapPropsToValues: (values) => {
+    const id = values.location.pathname.slice(11);
+    console.log("this is the id", id);
     return {
-      number: values.number || '',
-      plant: values.plant || '',
-      species: values.species || '',
-      water: values.water || ''
+      nickname: values.nickname || "",
+      species: values.species || "",
+      frequency: values.frequency || "",
+      id: id || "",
     };
   },
   validationSchema: yup.object().shape({
-    number: yup.number(),
-    plant: yup.string(),
+    nickname: yup.string(),
     species: yup.string(),
-    water: yup.string()
+    frequency: yup.string(),
   }),
   handleSubmit: (values, { setStatus }) => {
-    axios
-      .put('', values)
-      .then(response => {
+    console.log(values);
+    let value = {
+      nickname: values.nickname,
+      species: values.species,
+      frequency: values.frequency,
+    };
+    axiosWithAuth()
+      .put(`https://plantswater.herokuapp.com/api/plants/${values.id}`, value)
+      .then((response) => {
+        console.log(response);
         setStatus(response.data);
       })
-      .catch(error => {
-        console.log('Error:', error);
+      .catch((error) => {
+        console.log("Error:", error);
       });
-  }
+  },
 })(EditPlant);
