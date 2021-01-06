@@ -9,6 +9,7 @@ import CreatePlantForm from './components/CreatePlantForm';
 import SignUp from './components/SignUp.js'; // Mona //
 import EditPlant from './components/EditPlant.js'; // Mona //
 import EditUser from "./components/EditUser"
+import AddPlant from "./components/AddPlant"
 
 const Content = styled.div`
   margin-top: 150px;
@@ -31,6 +32,7 @@ function App() {
       <LoginForm />
       <CreatePlantForm />
       <EditUser />
+      <AddPlant />
     </div>
   );
 }
