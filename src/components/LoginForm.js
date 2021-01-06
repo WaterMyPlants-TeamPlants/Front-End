@@ -70,7 +70,9 @@ function LoginForm(props) {
         })
         setLoginFormValues(blankLoginForm);
     }
-
+    const pushToSignUp = () => {
+        push('/signup');
+    }
 
     return (
         <div>
@@ -90,7 +92,7 @@ function LoginForm(props) {
                      onChange = {changeLoginValues} />
                 </label>
                 <button>Sign In</button>
-                <button>Register</button>
+                <button onClick={pushToSignUp}>Register</button>
             </StyledForm>
             
             <LoginErrorsDiv className = 'errors-container'>

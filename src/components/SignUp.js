@@ -3,7 +3,7 @@ import { withFormik, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
-
+import {useHistory} from 'react-router-dom';
 //Import From
 import { 
   Input,
@@ -16,6 +16,10 @@ import {
 
 
 const SignUp = props => {
+  const {push} = useHistory();
+  const pushToSignIn = () => {
+    push('/login');
+}
   const { errors, touched, values } = props;
   return (
     <>
@@ -42,6 +46,7 @@ const SignUp = props => {
           <Error>{errors.password2.slice(49, 69)}</Error>
         )}
         <Button type="submit">Sign Up</Button>
+        <Button onClick={pushToSignIn}>Back</Button>
       </FormDiv>
     </>
   );
@@ -77,6 +82,7 @@ export default withFormik({
   validateOnChange: false,
   validateOnBlur: false,
   handleSubmit: (values, { props, resetForm }) => {
+    console.log(props);
     let userObj = {
       username: values.username,
       password: values.password,
