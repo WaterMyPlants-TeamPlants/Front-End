@@ -42,7 +42,7 @@ const AddPlant = () => {
     }
 
     return(
-        <form>
+        <form onSubmit={Submit}>
             <label>nickname
                 <input
                 type="text"
