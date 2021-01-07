@@ -1,85 +1,98 @@
 import React, { useState } from "react";
 import Styled from "styled-components";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../AxiosWithAuth";
+import { saveUser } from "../actions";
 //imported images
 import pencil from "./images/pencil.png";
-import user from "./images/User.png";
-
-
+import userImg from "./images/User.png";
+import { useSelector, useDispatch } from "react-redux";
 const UserInfo = {
-    username: "",
-    email: "",
-    phone: "",
-    notifications: "",
-}
-
+  username: "",
+  //   email: "",
+  telephone: "",
+  //   notifications: "",
+};
 
 const EditUser = () => {
-    const [edit, setEdit] = useState(UserInfo)
-
-    const Change = (evt) => {
-        const correctValue = evt.target.type === "checkbox" ? evt.target.checked : 
-        evt.target.value;
-        setEdit({...edit,[evt.target.name] : correctValue})
-        console.log(correctValue)
-    }
-
-    const Save = (evt) => {
-        evt.preventDefault();
-        axios
-        .post(``)
-        .then(res =>{
-
-        })
-        .catch(err => console.log(err))
-    }
-
-
-
-    return(
-        <EditForm onSubmit={Save}>
-            <div className="user"><img id="userPic" src={user} alt="user"/></div>
-            <label className="username"><h2>Username:</h2>
-                <input 
-                type="text"
-                name="username"
-                onChange={Change}
-                value={edit.username}
-                /><img id="pencil" src={pencil} alt="edit pencil"/>
-            </label>
-            <br/>
-            <label><h2>Email address:</h2>
-                <input 
-                type="text"
-                name="email"
-                onChange={Change}
-                value={edit.email}
-                /><img id="pencil" src= {pencil} alt="edit pencil"/>
-            </label>
-            <br/>
-            <label><h2>Phone number:</h2>
-                <input 
-                type="text"
-                name="phone"
-                onChange={Change}
-                value={edit.phone}
-                /><img id="pencil" src= {pencil} alt="edit pencil"/>
-            </label>
-            <br/>
-            <label className="notifications"><h2>Turn notifications on:</h2><br/>
-                <input
-                id="checkbox"
-                type="checkbox"
-                name="notifications"
-                onChange={Change}
-                value={edit.notifications}
-                />
-            </label>
-            <button>Save</button>
-        </EditForm>
-    )
-}
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state);
+  const [edit, setEdit] = useState(UserInfo);
+  const { push } = useHistory();
+  const Change = (evt) => {
+    const correctValue =
+      evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
+    setEdit({ ...edit, [evt.target.name]: correctValue });
+    console.log(correctValue);
+  };
+  console.log("THIS IS THE EDIT", { edit });
+  const Save = (evt) => {
+    evt.preventDefault();
+    axiosWithAuth()
+      .put(`https://plantswater.herokuapp.com/api/users/${user.id}`, edit)
+      .then((res) => {
+        console.log(res);
+        dispatch(saveUser(res.data))
+        push("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const pushToDash = () => {
+    push("/dashboard");
+  };
+  console.log(user);
+  return (
+    <EditForm onSubmit={Save}>
+      <div className="user">
+        <img id="userPic" src={userImg} alt="user" />
+      </div>
+      <label className="username">
+        <h2>Username:</h2>
+        <input
+          type="text"
+          name="username"
+          onChange={Change}
+          value={edit.username}
+        />
+        <img id="pencil" src={pencil} alt="edit pencil" />
+      </label>
+      <br />
+      {/* <label>
+        <h2>Email address:</h2>
+        <input type="text" name="email" onChange={Change} value={edit.email} />
+        <img id="pencil" src={pencil} alt="edit pencil" />
+      </label>
+      <br /> */}
+      <label>
+        <h2>Phone number:</h2>
+        <input
+          type="text"
+          name="telephone"
+          onChange={Change}
+          value={edit.yelephone}
+        />
+        <img id="pencil" src={pencil} alt="edit pencil" />
+      </label>
+      <br />
+      {/* <label className="notifications">
+        <h2>Turn notifications on:</h2>
+        <br />
+        <input
+          id="checkbox"
+          type="checkbox"
+          name="notifications"
+          onChange={Change}
+          value={edit.notifications}
+        />
+      </label> */}
+      <button>Save</button>
+      <button onClick={pushToDash}>Back to Dash</button>
+    </EditForm>
+  );
+};
 
 const EditForm = Styled.form`
 display: flex;
@@ -152,6 +165,6 @@ button:hover {
     color: #8ca9fc;
 }
 
-`
+`;
 
 export default EditUser;

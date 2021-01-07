@@ -7,23 +7,25 @@ import LoginForm from "./components/LoginForm";
 import CreatePlantForm from "./components/CreatePlantForm";
 import SignUp from "./components/SignUp.js"; // Mona //
 import EditPlant from "./components/EditPlant.js"; // Mona //
-import { createStore } from "redux";
+
 import Dashboard from "./components/dashboard";
 import Registered from "./components/Registered";
 import EditUser from "./components/EditUser";
-import {PrivateRoute} from "./PrivateRoutes";
+import { PrivateRoute } from "./PrivateRoutes";
+import AddPlant from "./components/AddPlant";
 function App() {
   return (
     <div className="App">
       <Router>
         <Content>
           <Route exact path="/signup" component={SignUp} />
-          <PrivateRoute  path="/editplant" component={EditPlant} />
-          <Route  exact path="/login" component={LoginForm} />
-          <PrivateRoute  path="/createplant" component={CreatePlantForm} />
-          <PrivateRoute  path="/dashboard" component={Dashboard} />
-          <PrivateRoute  path="/registered" component={Registered} />
-          <PrivateRoute  path="/edituser" component={EditUser} />
+          <PrivateRoute path="/editplant" component={EditPlant} />
+          <Route exact path="/login" component={LoginForm} />
+          <PrivateRoute path="/createplant" component={CreatePlantForm} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/registered" component={Registered} />
+          <PrivateRoute path="/edituser" component={EditUser} />
+          <PrivateRoute path="/addplant" component={AddPlant} />
         </Content>
       </Router>
     </div>
