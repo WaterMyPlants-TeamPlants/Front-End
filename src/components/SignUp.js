@@ -80,17 +80,17 @@ export default withFormik({
     let userObj = {
       username: values.username,
       password: values.password,
-      phonenumber: values.phonenumber
+      telephone: values.phonenumber
     };
     axios
       .post(
-        "",
+        "https://plantswater.herokuapp.com/api/register",
         userObj
       )
       .then(res => {
         localStorage.setItem("token", res.data.token);
         resetForm();
-        return props.history.push("/home");
+        return props.history.push("/registered");
       })
       .catch(err => {
         return err.response;

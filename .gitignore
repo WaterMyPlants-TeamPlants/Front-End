@@ -1,4 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.eslintcache
 
 # dependencies
 /node_modules
@@ -22,5 +23,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 # for merging conflicts
+=======
+>>>>>>> 7f51bab6d1f481cbb807e9e23d426a5ffdea7a82
 .eslintcache

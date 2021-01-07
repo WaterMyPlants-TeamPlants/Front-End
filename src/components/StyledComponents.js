@@ -12,7 +12,7 @@ import styled from "styled-components";
 export const FormDiv = styled(Form)`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   margin: auto;
   background-color: #e5ffe5;
   color: #000;
@@ -24,12 +24,12 @@ export const Heading = styled.h1`
   font-size: 3rem;
   font-weight: 300;
   text-align: center;
-  padding-top: 4rem;
+  padding-top: 1.5rem;
 `;
 
 export const Label = styled.label`
-margin: 0rem auto;
-margin-left: 8rem;
+margin: 0.5em auto;
+width: 70%;
 height: 1rem;
 border: none;
 font-size: 1.5rem;
@@ -42,7 +42,7 @@ color: #000;
 
 export const Input = styled(Field)`
   margin: 1rem auto;
-  width: 70%;
+  width: 50%;
   height: 2rem;
   border: none;
   border-radius: 8px;
@@ -56,9 +56,10 @@ export const Input = styled(Field)`
 `;
 
 export const Button = styled.button`
+  margin: 1rem auto;
+  width: 40%;
   height: 4.5rem;
-  margin: 3rem 25rem 6rem 8rem;
-  padding: 0rem 2.5rem;
+  padding: 0rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1.75rem;
   text-align: center;
@@ -91,14 +92,13 @@ export const Error = styled.p`
 
 export const Body = styled.div`
   opacity: 0.9;
-  background-color: #708090;
+  background-color: #e5ffe5;
   width: 100%;
   height: 100%;
 `;
 
 export const PlantForm = styled(Form)`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: Helvetica;
   margin: 100px auto 50px;
   border: 1px solid #778899;
   border-radius: 10px;
