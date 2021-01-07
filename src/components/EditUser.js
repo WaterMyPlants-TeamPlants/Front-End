@@ -9,7 +9,7 @@ import pencil from "./images/pencil.png";
 import userImg from "./images/User.png";
 import { useSelector, useDispatch } from "react-redux";
 const UserInfo = {
-  username: "",
+  password: "",
   //   email: "",
   telephone: "",
   //   notifications: "",
@@ -49,13 +49,13 @@ const EditUser = () => {
       <div className="user">
         <img id="userPic" src={userImg} alt="user" />
       </div>
-      <label className="username">
-        <h2>Username:</h2>
+      <label className="password">
+        <h2>Password:</h2>
         <input
-          type="text"
-          name="username"
+          type="password"
+          name="password"
           onChange={Change}
-          value={edit.username}
+          value={edit.password}
         />
         <img id="pencil" src={pencil} alt="edit pencil" />
       </label>
