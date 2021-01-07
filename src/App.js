@@ -21,11 +21,10 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <PrivateRoute path="/editplant" component={EditPlant} />
           <Route exact path="/login" component={LoginForm} />
-          <PrivateRoute path="/createplant" component={CreatePlantForm} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/registered" component={Registered} />
           <PrivateRoute path="/edituser" component={EditUser} />
-          <PrivateRoute path="/addplant" component={AddPlant} />
+          <PrivateRoute path="/addplant" component={CreatePlantForm} />
         </Content>
       </Router>
     </div>

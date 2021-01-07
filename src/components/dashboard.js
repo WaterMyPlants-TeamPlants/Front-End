@@ -21,7 +21,7 @@ const Dashboard = () => {
     const pushToEditPlant = (id) => {
         push(`/editplant/${id}`);
     }
-    const deletePlant = (id) => {
+    const deletePlantfunction = (id) => {
         axiosWithAuth()
         .delete(`https://plantswater.herokuapp.com/api/plants/${id}`)
         .then(res =>{
@@ -54,7 +54,7 @@ const Dashboard = () => {
                             <p>Species:{ele.species}</p>
                             <p>How often to water: Every {ele.frequency}hours</p>
                             <button onClick={()=>pushToEditPlant(ele.id)}>Edit Plant</button>
-                            <button onClick={()=>deletePlant(ele.id)}>Delete Plant</button>
+                            <button onClick={()=>deletePlantfunction(ele.id)}>Delete Plant</button>
                         </div>
 
                         // Style each plant div to be a card for each plant.

@@ -7,7 +7,7 @@ export default yup.object().shape({
     species: yup
      .string()
      .required('Plant species is required.'),
-    waterfrequency: yup
-     .string()
+    frequency: yup
+     .number()
      .required('The frequency of watering plant is required.'),
 })
