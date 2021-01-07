@@ -2,22 +2,29 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import createPlantSchema from '../validation/CreatePlantFormSchema';
 import styled from 'styled-components';
+import axios from 'axios';
+import {axiosWithAuth} from '../AxiosWithAuth';
+import {useDispatch,useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import { addPlant } from '../actions';
 
 // Create Plant Form Empty Objects
 const blankCreatePlantForm = {
     nickname: '',
     species: '',
-    waterfrequency: '',
+    frequency: '',
 }
   
 const initialCreatePlantErrors = {
     nickname: '',
     species: '',
-    waterfrequency: '',
+    frequency: '',
 }
 
 function CreatePlantForm(props) {
-
+const {push} = useHistory();
+const userInfo = useSelector((state) => state);
+const dispatch = useDispatch();
     // Create Plant Form UseState and event handlers
 
   const [createPlantFormValues, setCreatePlantFormValues] = useState(blankCreatePlantForm);
@@ -52,10 +59,19 @@ function CreatePlantForm(props) {
         const createPlantInfo = {
           nickname: createPlantFormValues.nickname,
           species: createPlantFormValues.species,
-          waterfrequency: createPlantFormValues.waterfrequency,
+          frequency: createPlantFormValues.frequency,
+          user_id: userInfo.id
         }
-    
-        setNewPlant(createPlantInfo);
+        axiosWithAuth()
+        .post('https://plantswater.herokuapp.com/api/plants',createPlantInfo)
+        .then(res => {
+            dispatch(addPlant(res.data));
+            push('/dashboard');
+        })
+        .catch(err => {
+
+        })
+       
         setCreatePlantFormValues(blankCreatePlantForm);
     };
 
@@ -77,9 +93,9 @@ function CreatePlantForm(props) {
                 </label>
 
                 <label> Water Frequency
-                    <input name = 'waterfrequency' 
-                     type = 'text' 
-                     value = {createPlantFormValues.waterfrequency} 
+                    <input name = 'frequency' 
+                     type = 'number' 
+                     value = {createPlantFormValues.frequency} 
                      onChange = {changeCreatePlantValues} />
                 </label>
                 <button>Save</button>
@@ -88,7 +104,7 @@ function CreatePlantForm(props) {
             <ErrorsDiv>
                 <p>{createPlantErrors.nickname}</p>
                 <p>{createPlantErrors.species}</p>
-                <p>{createPlantErrors.waterfrequency}</p>
+                <p>{createPlantErrors.frequency}</p>
             </ErrorsDiv>
         </div>
     )

@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import {SAVE_USER, EDIT_PLANT, DELETE_PLANT} from '../actions'
+import {SAVE_USER, EDIT_PLANT, DELETE_PLANT, ADD_PLANT} from '../actions/index'
 
 
 const initialUserState = {
@@ -29,6 +29,10 @@ const userReducer = (state = initialUserState, action) => {
                 }
             })
             return stateAfterDelete
+        case ADD_PLANT:
+            const newPlantAddedToState = {...state}
+            newPlantAddedToState.plants.push(action.payload)
+            return newPlantAddedToState
     }   
     
     
