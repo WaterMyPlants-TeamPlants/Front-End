@@ -92,7 +92,7 @@ export const Error = styled.p`
 
 export const Body = styled.div`
   opacity: 0.9;
-  background-color: #e5ffe5;
+  background-color: #708090;
   width: 100%;
   height: 100%;
 `;

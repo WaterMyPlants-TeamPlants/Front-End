@@ -1,78 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
+import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../AxiosWithAuth";
+import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom"
 
-//Styles Import//
-import { 
-    Body,
-    PlantForm,
-    FieldInput,
-    Button,
-  } from './StyledComponents'
+export default function App() {
+  const [frequency, setFrequency] = React.useState("");
+  const [nickname, setNickname] = React.useState("");
+  const [species, setSpecies] = React.useState("");
+  const [water, setWater] = React.useState("");
 
-const EditPlant = ({ errors, touched, status }) => {
-  const [newPlant, addNewPlant] = useState([]);
+  const EditPlant = ({ errors, touched, status }) => {
+    const [newPlant, addNewPlant] = useState([]);
 
-  useEffect(() => {
-    if (status) {
-      addNewPlant([...newPlant, status]);
-    }
-  }, [newPlant, status]);
+    useEffect(() => {
+      if (status) {
+        addNewPlant([...newPlant, status]);
+      }
+    }, [newPlant, status]);
+  };
+
+  const handleSubmit = event => {
+    console.log(`
+      Frequency: ${frequency}
+      Nickname: ${nickname}
+      Species: ${species}
+      Water: ${water}
+    `);
+
+    event.preventDefault();
+  };
+  
 
   return (
-    <Body>
-      <PlantForm>
-        <h1>Edit Plant</h1>
-        {touched.number && errors.number && (
-            <p className="error">{errors.number}</p>
-        )}
-        <FieldInput type="number" name="number" placeholder="Amount" />
-        {touched.plant && errors.plant && (
-          <p className="error">{errors.plant}</p>
-        )}
-        <FieldInput type="text" name="plant" placeholder="Nick Name" />
+    <form onSubmit={handleSubmit}>
+      <h1>Edit Plant</h1>
 
-        {touched.species && errors.species && (
-          <p className="error">{errors.species}</p>
-        )}
-        <FieldInput type="text" name="species" placeholder="Species" />
+      <label>
+        Frequency
+        <input
+          name="frequency"
+          type="number"
+          value={frequency}
+          onChange={e => setFrequency(e.target.value)}
+          required
+        />
+      </label>
 
-        {touched.water && errors.water && (
-          <p className="error">{errors.water}</p>
-        )}
-        <FieldInput type="text" name="water" placeholder="Water Intake" />
+      <label>
+        NickName
+        <input
+          name="nickname"
+          type="text"
+          value={nickname}
+          onChange={e => setNickname(e.target.value)}
+          required
+        />
+      </label>
 
-        <Button type="submit">Submit!</Button>
-      </PlantForm>
-    </Body>
+      <label>
+        Species
+        <input
+          name="species"
+          type="text"
+          value={species}
+          onChange={e => setSpecies(e.target.value)}
+          required
+        />
+      </label>
+
+      <label>
+        Water Intake
+        <input
+          name="waterintake"
+          type="text"
+          value={water}
+          onChange={e => setWater(e.target.value)}
+          required
+        />
+      </label>
+
+      <button>Submit</button>
+    </form>
   );
-};
+}
 
-export default withFormik({
-  mapPropsToValues: values => {
-    return {
-      number: values.number || '',
-      plant: values.plant || '',
-      species: values.species || '',
-      water: values.water || ''
-    };
-  },
-  validationSchema: yup.object().shape({
-    number: yup.number(),
-    plant: yup.string(),
-    species: yup.string(),
-    water: yup.string()
-  }),
-  handleSubmit: (values, { setStatus }) => {
-    axios
-      .put('', values)
-      .then(response => {
-        setStatus(response.data);
-      })
-      .catch(error => {
-        console.log('Error:', error);
-      });
-  }
-})(EditPlant);
+
+
