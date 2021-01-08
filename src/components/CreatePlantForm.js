@@ -77,7 +77,7 @@ function CreatePlantForm(props) {
   };
 
   return (
-    <div>
+    <StyledDiv>
       <StyledPlantForm onSubmit={uponSubmitCreatePlant}>
         <label>
           {" "}
@@ -119,11 +119,15 @@ function CreatePlantForm(props) {
         <p>{createPlantErrors.species}</p>
         <p>{createPlantErrors.frequency}</p>
       </ErrorsDiv>
-    </div>
+    </StyledDiv>
   );
 }
 
 // CSS Styles
+
+const StyledDiv = styled.div`
+  background-color: #384f94;
+`
 
 const StyledPlantForm = styled.form`
   display: flex;

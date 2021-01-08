@@ -113,19 +113,20 @@ const StyledDiv = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     padding: 20%;
-    margin: -9%
+    margin: -11%
 
 `
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 2% 25% 2% 25%;
+  margin: 0 25% 2% 25%;
   background-color: rgba(229, 255, 229, 0.7);
   padding: 5% 10% 5% 10%;
   
-
   h2 {
     color: #384f94;
+    font-family: cursive;
+    font-size: 1.9rem;
   }
 
   label {
