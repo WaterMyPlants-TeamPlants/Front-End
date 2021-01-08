@@ -97,12 +97,14 @@ function LoginForm(props) {
         </label>
         <button>Sign In</button>
         <button onClick={pushToSignUp}>Register</button>
-      </StyledForm>
 
-      <LoginErrorsDiv className="errors-container">
+        <LoginErrorsDiv className="errors-container">
         <p>{loginErrors.username}</p>
         <p>{loginErrors.password}</p>
       </LoginErrorsDiv>
+      </StyledForm>
+
+      
     </StyledDiv>
   );
 }
@@ -114,22 +116,16 @@ const StyledDiv = styled.div`
     margin: -9%
 
 `
-const StyledFormDiv = styled.div`
-  padding: 3% 10% 5% 10%;
-  margin: 2% 25% 2% 25%;
-  background-color: #e5ffe5;
-`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   margin: 2% 25% 2% 25%;
   background-color: rgba(229, 255, 229, 0.7);
-  padding: 3% 10% 5% 10%;
+  padding: 5% 10% 5% 10%;
   
 
   h2 {
     color: #384f94;
-    opacity: 1;
   }
 
   label {
@@ -148,11 +144,11 @@ const StyledForm = styled.form`
   }
 `;
 const LoginErrorsDiv = styled.div`
-  margin: 0 20% 5% 20%;
-
+  
   p {
     color: red;
     font-weight: bolder;
+    font-size: 1.2rem;
   }
 `;
 
