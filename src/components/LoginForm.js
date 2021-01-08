@@ -71,7 +71,7 @@ function LoginForm(props) {
   };
 
   return (
-    <div>
+    <StyledDiv>
       <StyledForm onSubmit={uponSubmitLogin}>
         <h2>Welcome Back</h2>
         <label>
@@ -97,25 +97,36 @@ function LoginForm(props) {
         </label>
         <button>Sign In</button>
         <button onClick={pushToSignUp}>Register</button>
-      </StyledForm>
 
-      <LoginErrorsDiv className="errors-container">
+        <LoginErrorsDiv className="errors-container">
         <p>{loginErrors.username}</p>
         <p>{loginErrors.password}</p>
       </LoginErrorsDiv>
-    </div>
+      </StyledForm>
+
+      
+    </StyledDiv>
   );
 }
+const StyledDiv = styled.div`
+    background-image: url("https://images.unsplash.com/photo-1464465474479-26aa7f69b834?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20%;
+    margin: -11%
 
+`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 2% 25% 2% 25%;
-  background-color: #e5ffe5;
-  padding: 3% 10% 5% 10%;
-
+  margin: 0 25% 2% 25%;
+  background-color: rgba(229, 255, 229, 0.7);
+  padding: 5% 10% 5% 10%;
+  
   h2 {
     color: #384f94;
+    font-family: cursive;
+    font-size: 1.9rem;
   }
 
   label {
@@ -134,11 +145,11 @@ const StyledForm = styled.form`
   }
 `;
 const LoginErrorsDiv = styled.div`
-  margin: 0 20% 5% 20%;
-
+  
   p {
     color: red;
     font-weight: bolder;
+    font-size: 1.2rem;
   }
 `;
 
