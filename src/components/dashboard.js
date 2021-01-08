@@ -73,7 +73,7 @@ const Dashboard = () => {
 
 const StyledNav = styled.nav`
   background-color: #384f94;
-  margin: -11% 0 0 0;
+  margin: -8% 0 0 0;
   padding: 2% 0 0 0;
   display: flex;
   flex-direction: row;
@@ -86,13 +86,13 @@ const StyledNav = styled.nav`
     font-weight: bold;
   }
   .edit-user{
-    margin: 0 9% 0 0;
+    margin: 0 12% 0 0;
   }
   .add-plant{
-    margin: 0 11% 0 0;
+    margin: 0 12% 0 0;
   }
   h1{
-    margin: 0 30% 0 0;
+    margin: 0 29% 0 0;
     font-size: 2rem;
     color: rgba(229, 255, 229, 1);
     padding: 0 0 1.5% 0;
@@ -101,10 +101,11 @@ const StyledNav = styled.nav`
 `
 const StyledDiv = styled.div`
   background-color: rgba(229, 255, 229, 1);
+  padding: 0 0 1% 0;
   
   .userInfo{
     color: #384f94;
-    margin: 1% 30% 1% 30%;
+    margin: 1% 35% 1% 35%;
     padding: 1%;
     font-weight: bold;
   }
@@ -115,7 +116,7 @@ const StyledH2 = styled.h2`
 `
 const StyledPlantDiv = styled.div`
   background-color: #384f94;
-  margin: 3% 30% 1% 31%;
+  margin: 3% 35% 1% 36%;
   padding: 2% 0 2% 0;
   img{
     height: 25vh;

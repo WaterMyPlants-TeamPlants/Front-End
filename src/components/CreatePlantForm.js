@@ -112,13 +112,15 @@ function CreatePlantForm(props) {
           />
         </label>
         <button>Save</button>
-      </StyledPlantForm>
 
-      <ErrorsDiv>
+        <ErrorsDiv>
         <p>{createPlantErrors.nickname}</p>
         <p>{createPlantErrors.species}</p>
         <p>{createPlantErrors.frequency}</p>
       </ErrorsDiv>
+      </StyledPlantForm>
+
+      
     </StyledDiv>
   );
 }
@@ -129,15 +131,15 @@ const StyledDiv = styled.div`
   background-image: url(https://images.unsplash.com/photo-1603436326446-74e2d65f3168?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=706&q=80);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 10% 0 19% 0;
+  padding: 10% 0 20.7% 0;
   margin: -11% 0 -11% 0;
 `
 
 const StyledPlantForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 0 27% 0 27%;
-  padding: 3% 10% 4% 10%;
+  margin: 0 30% 0 30%;
+  padding: 4% 10% 4% 10%;
   background-color: rgba(229, 255, 229, 0.8);
 
   label {
@@ -152,13 +154,14 @@ const StyledPlantForm = styled.form`
   button {
     background-color: #384f94;
     border-radius: 5px;
-    margin: 5% 20% 3% 20%;
+    margin: 5% 28% 3% 28%;
     color: rgb(229, 255, 229);
     font-weight: bold;
+    padding: 1% 0 1% 0;
   }
 `;
 const ErrorsDiv = styled.div`
-  margin: 0 20% 5% 20%;
+  margin: 0 5% 5% 5%;
 
   p {
     color: red;

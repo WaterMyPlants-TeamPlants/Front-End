@@ -113,13 +113,13 @@ const StyledDiv = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     padding: 20%;
-    margin: -11%
+    margin: -11% 0 0 0;
 
 `
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 0 25% 2% 25%;
+  margin: 0 22% 2% 22%;
   background-color: rgba(229, 255, 229, 0.7);
   padding: 5% 10% 5% 10%;
   
