@@ -84,8 +84,6 @@ const StyledNav = styled.nav`
     border: none;
     color: rgba(229, 255, 229, 1);
     font-weight: bold;
-    font-family: cursive;
-    font-size: 1rem;
   }
   .edit-user{
     margin: 0 9% 0 0;
@@ -117,7 +115,7 @@ const StyledH2 = styled.h2`
 `
 const StyledPlantDiv = styled.div`
   background-color: #384f94;
-  margin: 3% 30% 1% 30%;
+  margin: 3% 30% 1% 31%;
   padding: 2% 0 2% 0;
   img{
     height: 25vh;

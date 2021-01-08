@@ -126,28 +126,35 @@ function CreatePlantForm(props) {
 // CSS Styles
 
 const StyledDiv = styled.div`
-  background-color: #384f94;
+  background-image: url(https://images.unsplash.com/photo-1603436326446-74e2d65f3168?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=706&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10% 0 19% 0;
+  margin: -11% 0 -11% 0;
 `
 
 const StyledPlantForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 2% 25% 2% 25%;
-  padding: 3% 10% 5% 10%;
+  margin: 0 27% 0 27%;
+  padding: 3% 10% 4% 10%;
+  background-color: rgba(229, 255, 229, 0.8);
 
   label {
     margin: 2%;
     display: flex;
     flex-direction: column;
     text-align: left;
-    color: #578a42;
+    color: #384f94;
+    font-weight: bold;
   }
 
   button {
-    background-color: #4b67bb;
+    background-color: #384f94;
     border-radius: 5px;
     margin: 5% 20% 3% 20%;
-    color: #ffffff;
+    color: rgb(229, 255, 229);
+    font-weight: bold;
   }
 `;
 const ErrorsDiv = styled.div`
